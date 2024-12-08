@@ -1,0 +1,52 @@
+<div class="editor-page">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 col-xs-12">
+        <h1 class="text-xs-center">Article editor</h1>
+
+        <form [formGroup]="mainForm">
+          <fieldset>
+            <fieldset class="form-group">
+              <input formControlName="title" type="text" class="form-control" placeholder="Article Title" />
+            </fieldset>
+            <fieldset class="form-group">
+              <input formControlName="description" type="text" class="form-control" placeholder="What's this article about?" />
+            </fieldset>
+            <fieldset class="form-group">
+              <textarea
+                formControlName="body"
+                class="form-control"
+                rows="8"
+                placeholder="Write your article (in markdown)"
+              ></textarea>
+            </fieldset>
+
+            <!-- Grammar Suggestions -->
+            <div *ngIf="grammarSuggestions" class="alert alert-info">
+              <h5>Grammar Suggestions:</h5>
+              <p>{{ grammarSuggestions }}</p>
+            </div>
+
+            <!-- Content Recommendations -->
+            <div *ngIf="contentRecommendations" class="alert alert-info">
+              <h5>Content Recommendations:</h5>
+              <p>{{ contentRecommendations }}</p>
+            </div>
+
+          </fieldset>
+        </form>
+
+        <button (click)="checkGrammar()" class="btn btn-lg btn-secondary">
+          Check Grammar
+        </button>
+        <button (click)="recommendContent()" class="btn btn-lg btn-secondary">
+          Get Content Recommendations
+        </button>
+
+        <button [disabled]="!mainForm.valid" (click)="submitForm()" class="btn btn-lg pull-xs-right btn-primary">
+          Publish Article
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
